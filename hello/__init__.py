@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, request
 from markupsafe import escape
 
 
@@ -8,11 +8,16 @@ def create_app():
 
     @app.route('/')
     def index():
-        return 'Index page'
+        return 'Index plauge'
 
     @app.route('/hello')
     def hello():
         return 'Hello, World!'
+
+    @app.route('/greeting')
+    def greeting():
+        name = request.args.get('name')
+        return 'Kia Ora, %s' % name
 
     @app.route('/user/<username>')
     def show_user_profile(username):
